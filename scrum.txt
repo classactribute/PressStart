@@ -7,10 +7,48 @@ Nick
 2.	Test the emulator to make sure it works
 3.	Familiarize with Xnes packet
 Phil
+
 1.	Prepared for the proposal
 2.	Work on Trello/GIT, prepare with group to begin work, possibly implement Register/Login(If pages are ready)
 3.	TBD
+
 Tee
 1.	Prepared for the proposal + created the git repo + trello board
 2.	Work on Trello and set up the project and all the pages.
 3.	Keep up with class
+_______________________________________________________________________________________
+2021/06/04
+
+Nick
+1.	
+2.	
+3.
+	
+Phil
+
+1.	
+2.	
+3.
+
+Tee
+1.	
+2.	
+3.
+_______________________________________________________________________________________
+2021/06/05
+
+Nick
+1.	
+2.	
+3.
+	
+Phil
+
+1.	
+2.	
+3.
+
+Tee
+1.	
+2.	
+3.
