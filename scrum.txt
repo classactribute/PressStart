@@ -26,13 +26,13 @@ Nick
 	
 Phil
 
-1.	
-2.	
+1.	Attended tutorial with Anastassia, researched the register/login pages to implement in project
+2.	Implement Register/Login pages (back-end)
 3.
 
 Tee
-1.	
-2.	
+1.	Started the project, setup main pages
+2.	Continue initial setup / work with Phil to implement main pages/register/login
 3.
 _______________________________________________________________________________________
 2021/06/05
