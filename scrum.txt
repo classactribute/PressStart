@@ -20,22 +20,58 @@ ________________________________________________________________________________
 2021/06/04
 
 Nick
-1.	
-2.	
-3.
+1.	Researched which emulator to use
+2.	Implement NES JS emulator
+3.	As needed
 	
 Phil
 
 1.	Attended tutorial with Anastassia, researched the register/login pages to implement in project
 2.	Implement Register/Login pages (back-end)
-3.
+3.	As needed
 
 Tee
 1.	Started the project, setup main pages
-2.	Continue initial setup / work with Phil to implement main pages/register/login
-3.
+2.	Continue initial setup / Get the front end set up / set up the database / work with Phil to implement main pages/register/login
+3.	As needed.
 _______________________________________________________________________________________
 2021/06/05
+
+Nick
+1.	Got the NES JS emulator working with S3.	
+2.	Set up the S3 for the upload
+3.	As needed.
+	
+Phil
+
+1.	Worked on Register/Login
+2.	Complete/get the register/login pages working
+3.	As needed.
+
+Tee
+1.  Coordinated initial page setup
+2.	Continue initial setup / database / front-end 
+3.	As needed.
+_____________________________________________________________________________________
+2021/06/07
+
+Nick
+1.	Continued work on emulator	
+2.	Continue work on emulator / games
+3.	As needed.
+	
+Phil
+
+1.	Continued work on login/register
+2.	Continue work on login/register
+3.	As needed.
+
+Tee
+1.  Continued setup
+2.	Continue work on main pages
+3.	As needed.
+_____________________________________________________________________________________
+2021/06/08
 
 Nick
 1.	
@@ -49,6 +85,42 @@ Phil
 3.
 
 Tee
+1.  
+2.	
+3.
+_____________________________________________________________________________________
+2021/06/09
+
+Nick
 1.	
+2.	
+3.
+	
+Phil
+
+1.	
+2.	
+3.
+
+Tee
+1.  
+2.	
+3.
+_____________________________________________________________________________________
+2021/06/10
+
+Nick
+1.	
+2.	
+3.
+	
+Phil
+
+1.	
+2.	
+3.
+
+Tee
+1.  
 2.	
 3.
