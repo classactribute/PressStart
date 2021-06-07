@@ -8,7 +8,7 @@ namespace PressStart.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Game> builder)
         {
-            //builder.Property(p => p.ImageName).HasColumnName("ImageFileName");
+            //builder.Property(p => p.GameName).HasColumnName("GameName");
         }
     }
 }
