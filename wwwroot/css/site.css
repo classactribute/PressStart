@@ -24,6 +24,17 @@ a {
   border-color: #1861ac;
 }
 
+/* Navbar styles */
+.navbar-custom {
+  background-color: #F2665D;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
