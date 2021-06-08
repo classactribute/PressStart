@@ -1,4 +1,35 @@
-﻿@page
+﻿@page "{id:int}"
 @model PressStart.Pages.PlayGamesModel
 @{
+   ViewData["Title"] = "Press Start!";
+} 
 }
+<script>window.onload = function(){nes_load_url("nes-canvas", "@Model.game.GamePath");}</script>
+<script type="text/javascript" src="~/js/nes-embed.js"></script>
+
+<div class="text-center">
+    <div style="margin: auto; width: 100%;">
+			<canvas id="nes-canvas" width="256" height="240" style="width: 100%"/>
+		</div>
+		<p><button onclick="goFullScreen();">Go Fullscreen</button></p>
+		<p><button onclick="unMute();">Unmute</button></p>
+		<p>DPad: Arrow keys<br/>Start: Return, Select: Tab<br/>A Button: A, B Button: S</p>
+</div>
+
+<script>
+	function unMute(){
+    
+}
+</script>
+
+<script>
+	function goFullScreen(){
+    var canvas = document.getElementById("nes-canvas");
+    if(canvas.requestFullScreen)
+        canvas.requestFullScreen();
+    else if(canvas.webkitRequestFullScreen)
+        canvas.webkitRequestFullScreen();
+    else if(canvas.mozRequestFullScreen)
+        canvas.mozRequestFullScreen();
+}
+</script>
