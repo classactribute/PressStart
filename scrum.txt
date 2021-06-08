@@ -67,27 +67,27 @@ Phil
 3.	As needed.
 
 Tee
-1.  Continued setup
+1.  	Continued setup
 2.	Continue work on main pages
 3.	As needed.
 _____________________________________________________________________________________
 2021/06/08
 
 Nick
-1.	
-2.	
-3.
+1.	started implementing s3 upload in sandbox for admin.addGame function
+2.	complete sandbox implementation of s3 upload 
+3.	webabb user management to be implemented to add functions to working copy
 	
 Phil
 
-1.	
-2.	
-3.
+1.	Studied for Quiz
+2.	Continue work on main pages
+3.	Research on how to Implement subscription model (Stripe API)
 
 Tee
-1.  
-2.	
-3.
+1.  	Finished Setup, Created database and started the Front End
+2.	Finish the Front end
+3.	As needed.
 _____________________________________________________________________________________
 2021/06/09
 
