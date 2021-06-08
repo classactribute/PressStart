@@ -86,7 +86,7 @@ Phil
 
 Tee
 1.  	Finished Setup, Created database and started the Front End
-2.	Finish the Front end
+2.	Start Add Game / Admin / Identity User
 3.	As needed.
 _____________________________________________________________________________________
 2021/06/09
