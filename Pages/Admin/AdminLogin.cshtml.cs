@@ -55,7 +55,7 @@ namespace PressStart.Pages.Admin
                 if (result.Succeeded)
                 {
                     logger.LogInformation($"User {Input.Email} logged in successfully.");
-                    return RedirectToPage("Admin/Index");
+                    return RedirectToPage("/Admin/Index");
                 }
                 ModelState.AddModelError("", "Invalid Login Attempt");
 

@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PressStart.Pages
 {
+    [Authorize(Roles = "Admin")]
     public class AdminIndexModel : PageModel
     {
-        [Authorize(Roles = "Admin")]
         public void OnGet()
         {
         }
