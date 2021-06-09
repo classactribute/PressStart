@@ -10,8 +10,10 @@ using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using PressStart.Data;
 
-namespace PressStart.Pages
+namespace PressStart.Pages.Admin.Games
 {
+
+    [Authorize(Roles = "Admin")]
     public class AddGameModel : PageModel
     {
         private PressStartContext db;
