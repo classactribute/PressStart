@@ -56,13 +56,16 @@ namespace PressStart.Pages
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email, EmailConfirmed = true };
                 var result = await userManager.CreateAsync(user, Input.Password);
-                if (result.Succeeded)
-                {
-                    logger.LogInformation($"User {Input.Email} create a new account with password");
-                    //await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToPage("/Index", new { email = Input.Email });
+                if (result.Succeeded) {
+                    var result2 = await userManager.AddToRoleAsync(user, "User");
+                    if (result2.Succeeded) {
+                        logger.LogInformation($"User {Input.Email} create a new account with password");
+                        return RedirectToPage("RegisterSuccess", new { email = Input.Email });
+                    } else {
+                        // FIXME: delete the user since role assignment failed, log the event, show error to the user
+                    }
                 }
                 foreach (var error in result.Errors)
                 {

@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using PressStart.Data;
 
+using Microsoft.Extensions.Logging;
+
 namespace PressStart
 {
     public class Startup
@@ -32,7 +34,7 @@ namespace PressStart
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -53,10 +55,54 @@ namespace PressStart
 
             app.UseAuthorization();
 
+            SeedUsersAndRoles(userManager, roleManager);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
+        }
+
+        private void SeedUsersAndRoles(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager) {
+            // note: we only seed roles in this particular example but
+            // you may want to seed users with assigned roles too (e.g. an Administrator user)
+            string[] roleNamesList = new string[] { "User", "Admin" };
+
+            foreach (string roleName in roleNamesList)
+            {
+                if (!roleManager.RoleExistsAsync(roleName).Result) {
+                    IdentityRole role = new IdentityRole();
+                    role.Name = roleName;
+                    IdentityResult result = roleManager.CreateAsync(role).Result;
+                    // WARNING: we ignore any errors that Create may return, they should be AT LEAST logged !
+                    foreach (IdentityError error in result.Errors) {
+                        // TODO: Log it!
+                    }
+                }
+
+            }
+
+            // WARNING: For testing ONLY. Do NOT do it on a production system!
+            // Create an Administrator. 
+            string adminEmail = "admin@admin.com";
+            string adminPass = "Admin123!"; // a terrible password
+            if (userManager.FindByNameAsync(adminEmail).Result == null)
+            {
+                IdentityUser user = new IdentityUser();
+                user.UserName = adminEmail;
+                user.Email = adminEmail;
+                user.EmailConfirmed = true;
+                IdentityResult result = userManager.CreateAsync(user, adminPass).Result;
+                if (result.Succeeded)
+                {
+                    IdentityResult result2 = userManager.AddToRoleAsync(user, "Admin").Result;
+                    if (!result2.Succeeded) {
+                        // FIXME: log the error
+                    }
+                } else {
+                    // FIXME: log the error
+                }
+            }
         }
     }
 }
