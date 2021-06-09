@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using PressStart.Data;
-
+using Microsoft.AspNetCore.Http;
 namespace PressStart.Pages.Admin.Games
 {
 
@@ -37,14 +37,15 @@ namespace PressStart.Pages.Admin.Games
 
     [BindProperty]
     public string Description { get; set; }
-
+    
+    
     public async Task<IActionResult> OnPostAsync()
     {
       if (ModelState.IsValid)
       {
         //var userName = User.Identity.Name; // userName is email
         //var user = db.Users.Where(u => u.UserID == userName).FirstOrDefault(); // find user record
-        var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = GamePath, ThumbnailPath = ThumbnailPath, Description = Description };
+        var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType,GamePath=GamePath, ThumbnailPath = ThumbnailPath, Description = Description };
         db.Add(newGame);
         await db.SaveChangesAsync();
         return RedirectToPage("AddGameSuccess");
