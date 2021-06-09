@@ -67,7 +67,7 @@ Phil
 3.	As needed.
 
 Tee
-1.  	Continued setup
+1.  Continued setup
 2.	Continue work on main pages
 3.	As needed.
 _____________________________________________________________________________________
@@ -85,27 +85,27 @@ Phil
 3.	Research on how to Implement subscription model (Stripe API)
 
 Tee
-1.  	Finished Setup, Created database and started the Front End
+1.  Finished Setup, Created database and started the Front End
 2.	Start Add Game / Admin / Identity User
 3.	As needed.
 _____________________________________________________________________________________
 2021/06/09
 
 Nick
-1.	
-2.	
-3.
+1.	Got the s3 upload in sandbox working 
+2.	work on Admin UX to implement add game
+3.	As needed
 	
 Phil
 
-1.	
-2.	
-3.
+1.	Completed Register/Login using Identity Framework
+2.	Work with Nick to implement S3 buckets, setup Admin pages
+3.	Implement subscription model
 
 Tee
-1.  
-2.	
-3.
+1.  Created the AddGame / AddGameSuccess Pages
+2.	Work on Admin with the team and create pag
+3.	As needed
 _____________________________________________________________________________________
 2021/06/10
 
