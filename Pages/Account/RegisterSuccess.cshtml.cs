@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PressStart.Pages
 {
-    public class AdminModel : PageModel
+    public class RegisterSuccessModel : PageModel
     {
         public void OnGet()
         {
