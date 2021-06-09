@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace PressStart.Pages
+namespace PressStart.Pages.Admin.Games
 {
     public class EditGameModel : PageModel
     {
