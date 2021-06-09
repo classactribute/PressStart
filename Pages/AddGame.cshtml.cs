@@ -43,7 +43,7 @@ namespace PressStart.Pages
         //var userName = User.Identity.Name; // userName is email
         //var user = db.Users.Where(u => u.UserID == userName).FirstOrDefault(); // find user record
         var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = GamePath, ThumbnailPath = ThumbnailPath, Description = Description };
-        db.Add(newGame);
+        db.Games.Add(newGame);
         await db.SaveChangesAsync();
         return RedirectToPage("AddGameSuccess");
       }

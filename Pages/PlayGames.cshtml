@@ -4,6 +4,9 @@
    ViewData["Title"] = "Press Start!";
 } 
 }
+
+
+if(@Model.game.GameType== nes){
 <script>window.onload = function(){nes_load_url("nes-canvas", "@Model.game.GamePath");}</script>
 <script type="text/javascript" src="~/js/nes-embed.js"></script>
 
@@ -15,6 +18,9 @@
 		<p><button onclick="unMute();">Unmute</button></p>
 		<p>DPad: Arrow keys<br/>Start: Return, Select: Tab<br/>A Button: A, B Button: S</p>
 </div>
+}
+
+
 
 <script>
 	function unMute(){
