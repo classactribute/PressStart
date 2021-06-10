@@ -13,10 +13,12 @@ using Amazon.Runtime;
 using Amazon.S3;
 using System;
 
-namespace PressStart.Controllers{
-    public class HomeController : Controller{
-         private readonly ILogger<HomeController> _logger;
-         public HomeController(ILogger<HomeController> logger)
+namespace PressStart.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
@@ -27,7 +29,7 @@ namespace PressStart.Controllers{
         }
 
         [HttpPost("FileUpload")]
-        public async Task<IActionResult> Index (List<IFormFile> files)
+        public async Task<IActionResult> Index(List<IFormFile> files)
         {
             long size = files.Sum(f => f.Length);
 
