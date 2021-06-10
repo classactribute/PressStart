@@ -97,3 +97,5 @@ Blog/Blog.db-wal
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
+
+keys.cs

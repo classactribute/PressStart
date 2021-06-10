@@ -34,8 +34,8 @@ namespace PressStart.Controllers{
             var filePaths = new List<string>();
 
             var bucketName = "presssroms";
-            var AWSKey = "AKIASXP32DLN7BG3KX5U";
-            var AWSSecret = "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";
+            var AWSKey = keys.AWSKey;
+            var AWSSecret = keys.AWSSecret;
             var AWSRegion = RegionEndpoint.GetBySystemName("us-east-1");
             var cred = new BasicAWSCredentials(AWSKey, AWSSecret);
             var client = new AmazonS3Client(cred, AWSRegion);
