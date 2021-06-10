@@ -24,10 +24,10 @@
     <p class="card-text">
         @Model.FeaturedGame.Description
     </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a asp-page="/PlayGames" asp-route-id="@Model.FeaturedGame.GameId" class="btn btn-primary">Play Now</a>
   </div>
   <div class="card-footer text-muted">
-    2 days ago
+    Number of times played:
   </div>
 </div>
 
