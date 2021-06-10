@@ -1,5 +1,5 @@
 ﻿@page
-@model PressStart.Pages.IndexModel
+@model PressStart.Pages.AdminIndexModel
 @{
 }
 
@@ -16,7 +16,31 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-      ...
+      <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">UserID</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model.UserList)
+                    {
+                        <tr>
+                            <td>@u.UserID</td>
+                            <td>@u.Email</td>
+                            <th scope="col"><a asp-page="/view" asp-route-id="@u.UserID" >Edit</a></th>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
   </div>
   <div class="tab-pane fade" id="games" role="tabpanel" aria-labelledby="games-tab">
       <a class="nav-link" asp-area="" asp-page="/Admin/Games/AddGame">Add Game</a>
