@@ -29,6 +29,5 @@ namespace PressStart.Pages
             ViewBag.stripeKey = _configuration["Stripe:publishable_key"];
             return View();
         }
-
     }
 }
