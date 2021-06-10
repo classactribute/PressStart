@@ -20,7 +20,7 @@ app.post('/create-checkout-session', async (req, res) => {
 
         price_data: {
 
-          currency: 'usd',
+          currency: 'cad',
 
           product_data: {
 
@@ -42,9 +42,9 @@ app.post('/create-checkout-session', async (req, res) => {
 
     mode: 'payment',
 
-    success_url: `${YOUR_DOMAIN}/success.html`,
+    success_url: `${YOUR_DOMAIN}/CheckoutSuccess.html`,
 
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    cancel_url: `${YOUR_DOMAIN}/CheckoutCancel.html`,
 
   });
 
