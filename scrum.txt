@@ -110,17 +110,17 @@ ________________________________________________________________________________
 2021/06/10
 
 Nick
-1.	
-2.	
-3.
+1.	protected keys after aws shut me down / partially implemented add game form 
+2.	fully implement rom and image upload 
+3.	http post request with 2 routes is confusing
 	
 Phil
 
-1.	
-2.	
-3.
+1.	Admin/Register/Login pages setup and ready
+2.	Implement the subscription model
+3.	Stripe tutorial review
 
 Tee
-1.  
-2.	
-3.
+1.	Added admin role (seeded) and helped implement the add game form. Admin index / authorizations.   
+2.	Work on setting up the view of games and users for both main and admin index pages.
+3.	As needed
