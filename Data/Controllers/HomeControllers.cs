@@ -12,6 +12,7 @@ using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
 using System;
+using PressStart.Data.Controllers;
 
 namespace PressStart.Controllers
 {
