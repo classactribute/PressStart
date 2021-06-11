@@ -16,8 +16,9 @@ using Amazon.S3.Model;
 using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
-
-
+using Amazon.S3.Transfer;
+using PressStart.Models;
+using System.Diagnostics;
 
 namespace PressStart.Pages.Admin.Games
 {
@@ -41,17 +42,15 @@ namespace PressStart.Pages.Admin.Games
             _environment = environment;
         }
 
+
+
         [BindProperty, Required, MinLength(1), MaxLength(500), Display(Name = "GameName")]
         public string GameName { get; set; }
 
         [BindProperty, Required, MinLength(1), MaxLength(150), Display(Name = "GameType")]
         public string GameType { get; set; }
 
-        [BindProperty, Required, MinLength(1), MaxLength(2000), Display(Name = "GamePath")]
-        public string GamePath { get; set; }
 
-        [BindProperty]
-        public string ThumbnailPath { get; set; }
 
         [BindProperty]
         public string Description { get; set; }
@@ -68,66 +67,105 @@ namespace PressStart.Pages.Admin.Games
 
 
 
-        public async Task<IActionResult> OnPostAsync()
+
+
+
+
+        public async Task<IActionResult> OnPostAsync(List<IFormFile> thumbnail, List<IFormFile> romfile)
         {
             if (ModelState.IsValid)
             {
-                string imagePath = null;
 
-                if (UploadThumb != null)
+                //Save Thumbnail to Uploads folder
+                string uploadedThumbnails = string.Empty;
+                string path = Path.Combine(this._environment.WebRootPath, "Uploads");
+
+                if (!Directory.Exists(path))
                 {
-                    string fileExtension = Path.GetExtension(UploadThumb.FileName).ToLower();
+                    Directory.CreateDirectory(path);
+                }
+
+                foreach (IFormFile postedFile in thumbnail)
+                {
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    uploadedThumbnails = Path.Combine(path, postedFile.FileName);
+
                     string[] allowedExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
-                    if (!allowedExtensions.Contains(fileExtension))
+                    if (!allowedExtensions.Contains(Path.GetExtension(postedFile.FileName).ToLower()))
                     {
                         // Display error and the form again
                         ModelState.AddModelError(string.Empty, "Only image files (jpg, jpeg, gif, png) are allowed");
                         return Page();
                     }
-                    // FIXME: sanitize the original name or assign random
-                    var invalids = System.IO.Path.GetInvalidFileNameChars();
-                    var newFileName = String.Join("_", UploadThumb.FileName.Split(invalids, StringSplitOptions.RemoveEmptyEntries)).TrimEnd('.');
-                    var destPath = Path.Combine(_environment.ContentRootPath, "wwwroot", "Uploads", UploadThumb.FileName);
-                    // FIXME: handle IO errors when copying the file
-                    try
+                    using (FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
                     {
-                        using (var fileStream = new FileStream(destPath, FileMode.Create))
-                        {
-                            UploadThumb.CopyTo(fileStream);
-                        }
+                        postedFile.CopyTo(stream);
                     }
-                    catch (Exception ex) when (ex is IOException || ex is SystemException)
+                }
+
+                //Save Game file to S3 folder
+                string uploadedGamePath = string.Empty;
+                string pathImage = Path.Combine(this._environment.WebRootPath, "S3Uploads");
+
+                if (!Directory.Exists(pathImage))
+                {
+                    Directory.CreateDirectory(pathImage);
+                }
+
+                foreach (IFormFile postedFile in romfile)
+                {
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    string[] allowedExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
+                    if (!allowedExtensions.Contains(Path.GetExtension(postedFile.FileName).ToLower()))
                     {
-                        // TODO: Log this as an error
-                        ModelState.AddModelError(string.Empty, "Internal error saving the uploaded file");
+                        // Display error and the form again
+                        ModelState.AddModelError(string.Empty, "Only image files (jpg, jpeg, gif, png) are allowed");
                         return Page();
                     }
-                    imagePath = Path.Combine("Uploads", newFileName);
+                    using (FileStream stream = new FileStream(Path.Combine(pathImage, fileName), FileMode.Create))
+                    {
+                        postedFile.CopyTo(stream);
+                    }
+                    var s3Client = new AmazonS3Client(keys.AWSKey, keys.AWSSecret, RegionEndpoint.GetBySystemName("us-east-1"));
+
+                    var fileTransferUtility = new TransferUtility(s3Client);
+
+                    try
+                    {
+                        if (postedFile.Length > 0)
+                        {
+                            uploadedGamePath = Path.Combine(pathImage, postedFile.FileName);
+                            var fileTransferUtilityRequest = new TransferUtilityUploadRequest
+                            {
+                                BucketName = keys.BucketName,
+                                FilePath = uploadedGamePath,
+                                StorageClass = S3StorageClass.StandardInfrequentAccess,
+                                PartSize = 6291456, // 6 MB.  
+                                Key = postedFile.FileName,
+                                CannedACL = S3CannedACL.PublicRead
+                            };
+                            fileTransferUtility.Upload(fileTransferUtilityRequest);
+                            fileTransferUtility.Dispose();
+                        }
+                    }
+
+                    catch (AmazonS3Exception amazonS3Exception)
+                    {
+                        if (amazonS3Exception.ErrorCode != null &&
+                            (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId")
+                            ||
+                            amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
+                        {
+                        }
+                        else
+                        {
+                        }
+                    }
                 }
-                
-                // ********S3 FOR ROM************ \\
-                var bucketName = "presssroms";
-                var AWSKey = keys.AWSKey;
-                var AWSSecret = keys.AWSSecret;
-                var AWSRegion = RegionEndpoint.GetBySystemName("us-east-1");
-                var cred = new BasicAWSCredentials(AWSKey, AWSSecret);
-                var client = new AmazonS3Client(cred, AWSRegion);
 
-                var filename = UploadRom.FileName;
-                PutObjectRequest request = new PutObjectRequest()
-                {
-                    InputStream = UploadRom.OpenReadStream(),
-                    BucketName = "presssroms",
-                    Key = filename
-                };
-
-                PutObjectResponse response = await client.PutObjectAsync(request);
-
-                GamePath = Path.Combine("https://presssroms.s3.amazonaws.com/", UploadRom.FileName);
-               
-
-                var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = GamePath, ThumbnailPath = imagePath, Description = Description };
+                var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = uploadedGamePath, ThumbnailPath = uploadedThumbnails, Description = Description };
                 db.Add(newGame);
+
                 await db.SaveChangesAsync();
 
                 return RedirectToPage("AddGameSuccess");

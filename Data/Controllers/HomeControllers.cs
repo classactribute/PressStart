@@ -54,7 +54,7 @@ namespace PressStart.Controllers
                         PutObjectRequest request = new PutObjectRequest()
                         {
                             InputStream = formFile.OpenReadStream(),
-                            BucketName = bucketName,
+                            BucketName = "presssroms",
                             Key = filename
                         };
 
@@ -62,7 +62,7 @@ namespace PressStart.Controllers
                     }
                     catch (Exception ex)
                     {
-                        return NotFound(new { count = files.Count, size, filePaths });
+                        return NotFound(new { count = files.Count, size, filePaths, ex });
                     }
 
                 }
