@@ -79,7 +79,7 @@ namespace PressStart.Pages.Admin.Games
                 //Save Thumbnail to Uploads folder
                 string uploadedThumbnails = string.Empty;
                 string path = Path.Combine(this._environment.WebRootPath, "Uploads");
-
+                string storedThumbnmailPath = string.Empty;
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -89,6 +89,7 @@ namespace PressStart.Pages.Admin.Games
                 {
                     string fileName = Path.GetFileName(postedFile.FileName);
                     uploadedThumbnails = Path.Combine(path, postedFile.FileName);
+                    storedThumbnmailPath = Path.Combine("~/Uploads/", postedFile.FileName);
 
                     string[] allowedExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
                     if (!allowedExtensions.Contains(Path.GetExtension(postedFile.FileName).ToLower()))
@@ -165,7 +166,7 @@ namespace PressStart.Pages.Admin.Games
                     }
                 }
 
-                var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = s3FilePath, ThumbnailPath = uploadedThumbnails, Description = Description };
+                var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = s3FilePath, ThumbnailPath = storedThumbnmailPath, Description = Description };
                 db.Add(newGame);
 
                 await db.SaveChangesAsync();
