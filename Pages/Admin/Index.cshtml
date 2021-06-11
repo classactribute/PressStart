@@ -67,6 +67,7 @@
                                 <td>@g.ThumbnailPath</td>
                                 <td>@g.Description</td>
                                 <th scope="col"><a asp-page="/Admin/Games/EditGame" asp-route-id="@g.GameId" >Edit</a></th>
+                                <th scope="col"><a asp-page="/Admin/Games/DeleteGame" asp-route-id="@g.GameId" >Delete</a></th>
                             </tr>
                         }
                     </tbody>
