@@ -117,7 +117,7 @@ namespace PressStart.Pages.Admin.Games
                 PutObjectRequest request = new PutObjectRequest()
                 {
                     InputStream = UploadRom.OpenReadStream(),
-                    BucketName = "presssroms",
+                    BucketName = bucketName,
                     Key = filename
                 };
 
