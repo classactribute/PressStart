@@ -24,11 +24,13 @@ namespace PressStart.Controllers
             _logger = logger;
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        
         [HttpPost("FileUpload")]
         public async Task<IActionResult> Index(List<IFormFile> files)
         {
@@ -52,7 +54,7 @@ namespace PressStart.Controllers
                         PutObjectRequest request = new PutObjectRequest()
                         {
                             InputStream = formFile.OpenReadStream(),
-                            BucketName = "presssroms",
+                            BucketName = bucketName,
                             Key = filename
                         };
 
@@ -65,6 +67,7 @@ namespace PressStart.Controllers
 
                 }
             }
+            
             // process uploaded files
             // Don't rely on or trust the FileName property without validation.
             return Ok(new { count = files.Count, size, filePaths });
