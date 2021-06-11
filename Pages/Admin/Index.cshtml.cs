@@ -16,8 +16,8 @@ namespace PressStart.Pages
     [Authorize(Roles = "Admin")]
     public class AdminIndexModel : PageModel
     {
-        //public AdminIndexModel(PressStartContext db) => this.db = db;
         public List<User> UserList { get; set; } = new List<User>();
+        public List<Game> GameList {get; set; } = new List<Game>();
 
         private readonly PressStartContext db;
         private readonly ILogger<AdminIndexModel> _logger;
@@ -30,6 +30,7 @@ namespace PressStart.Pages
         public async Task OnGetAsync()
         {
             UserList = await db.Users.ToListAsync();
+            GameList = await db.Games.ToListAsync();
         }
     }
 }

@@ -124,3 +124,21 @@ Tee
 1.	Added admin role (seeded) and helped implement the add game form. Admin index / authorizations.   
 2.	Work on setting up the view of games and users for both main and admin index pages.
 3.	As needed
+_____________________________________________________________________________________
+2021/06/11
+
+Nick
+1.	tried to get addgame working
+2.	complete addgame, optimize playgame 
+3.	stuck on s3/img uploads
+	
+Phil
+
+1.	Decided with group to substitute the subscription model with Facebook/Google login instead, Began work on implementing Facebook API
+2.	Implement the Facebook login feature
+3.	Review docs/tutorial for Facebook authentication
+
+Tee
+1.	Index; added a random featured game and got the games to be able to be played on PlayGame page. Started on Admin Index Users table.	   
+2.	Finish both Index pages and view games page
+3.	stuck on the Users table... why is nothing appearing.

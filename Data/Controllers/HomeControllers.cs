@@ -38,7 +38,7 @@ namespace PressStart.Controllers
 
             var filePaths = new List<string>();
 
-            //var BucketName = "presssroms";
+            var bucketName = "presssroms";
             var AWSKey = keys.AWSKey;
             var AWSSecret = keys.AWSSecret;
             var AWSRegion = RegionEndpoint.GetBySystemName("us-east-1");
@@ -60,7 +60,7 @@ namespace PressStart.Controllers
 
                         PutObjectResponse response = await client.PutObjectAsync(request);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         return NotFound(new { count = files.Count, size, filePaths, ex });
                     }
