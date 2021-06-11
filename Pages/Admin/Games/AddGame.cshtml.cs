@@ -115,11 +115,11 @@ namespace PressStart.Pages.Admin.Games
                 foreach (IFormFile postedFile in romfile)
                 {
                     string fileName = Path.GetFileName(postedFile.FileName);
-                    string[] allowedExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
+                    string[] allowedExtensions = { ".nes" };
                     if (!allowedExtensions.Contains(Path.GetExtension(postedFile.FileName).ToLower()))
                     {
                         // Display error and the form again
-                        ModelState.AddModelError(string.Empty, "Only image files (jpg, jpeg, gif, png) are allowed");
+                        ModelState.AddModelError(string.Empty, "Only ROM files  are allowed");
                         return Page();
                     }
                     using (FileStream stream = new FileStream(Path.Combine(pathImage, fileName), FileMode.Create))
