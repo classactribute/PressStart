@@ -105,6 +105,7 @@ namespace PressStart.Pages.Admin.Games
 
                 //Save Game file to S3 folder
                 string uploadedGamePath = string.Empty;
+                string s3FilePath = string.Empty;
                 string pathImage = Path.Combine(this._environment.WebRootPath, "S3Uploads");
 
                 if (!Directory.Exists(pathImage))
@@ -135,6 +136,7 @@ namespace PressStart.Pages.Admin.Games
                         if (postedFile.Length > 0)
                         {
                             uploadedGamePath = Path.Combine(pathImage, postedFile.FileName);
+                            s3FilePath = Path.Combine("https://presssroms.s3.amazonaws.com/", postedFile.FileName);
                             var fileTransferUtilityRequest = new TransferUtilityUploadRequest
                             {
                                 BucketName = keys.BucketName,
@@ -163,7 +165,7 @@ namespace PressStart.Pages.Admin.Games
                     }
                 }
 
-                var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = uploadedGamePath, ThumbnailPath = uploadedThumbnails, Description = Description };
+                var newGame = new PressStart.Models.Game { GameName = GameName, GameType = GameType, GamePath = s3FilePath, ThumbnailPath = uploadedThumbnails, Description = Description };
                 db.Add(newGame);
 
                 await db.SaveChangesAsync();
