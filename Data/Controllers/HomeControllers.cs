@@ -58,7 +58,7 @@ namespace PressStart.Controllers
 
                         PutObjectResponse response = await client.PutObjectAsync(request);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         return NotFound(new { count = files.Count, size, filePaths });
                     }
