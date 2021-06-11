@@ -24,6 +24,7 @@
                     <tr>
                         <th scope="col">UserID</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +33,7 @@
                         <tr>
                             <td>@u.UserID</td>
                             <td>@u.Email</td>
-                            <th scope="col"><a asp-page="/view" asp-route-id="@u.UserID" >Edit</a></th>
+                            <th scope="col"><a asp-page="/EditGame" asp-route-id="@u.UserID" >Edit</a></th>
                         </tr>
                     }
 

@@ -36,7 +36,7 @@ namespace PressStart.Controllers
 
             var filePaths = new List<string>();
 
-            var bucketName = "presssroms";
+            //var BucketName = "presssroms";
             var AWSKey = keys.AWSKey;
             var AWSSecret = keys.AWSSecret;
             var AWSRegion = RegionEndpoint.GetBySystemName("us-east-1");
