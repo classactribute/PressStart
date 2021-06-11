@@ -259,49 +259,6 @@ namespace PressStart.Data.Migrations
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("PressStart.Models.Role", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Subscription")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("RoleId");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("PressStart.Models.User", b =>
-                {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("EmailId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NameId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserID");
-
-                    b.HasIndex("EmailId");
-
-                    b.HasIndex("NameId");
-
-                    b.HasIndex("PasswordId");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -351,27 +308,6 @@ namespace PressStart.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PressStart.Models.User", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Email")
-                        .WithMany()
-                        .HasForeignKey("EmailId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Name")
-                        .WithMany()
-                        .HasForeignKey("NameId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Password")
-                        .WithMany()
-                        .HasForeignKey("PasswordId");
-
-                    b.Navigation("Email");
-
-                    b.Navigation("Name");
-
-                    b.Navigation("Password");
                 });
 #pragma warning restore 612, 618
         }
