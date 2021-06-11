@@ -5,57 +5,55 @@
 }
 
 <!-- Featured / Play this with a Subscription? -->
-<div class="card text-center">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">
-        @Model.FeaturedGame.GameName
-    </h5>
-    <p class="card-body">
-        <img src="@Url.Content(Model.FeaturedGame.ThumbnailPath)">
-    </p>
-    <p class="card-text">
-        @Model.FeaturedGame.Description
-    </p>
-    <a asp-page="/PlayGames" asp-route-id="@Model.FeaturedGame.GameId" class="btn btn-primary">Play Now</a>
-  </div>
-  <div class="card-footer text-muted">
-    Number of times played:
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+          @Model.FeaturedGame.GameName
+      </h5>
+      <p class="card-body">
+          <img src="@Url.Content(Model.FeaturedGame.ThumbnailPath)">
+      </p>
+      <p class="card-text">
+          @Model.FeaturedGame.Description
+      </p>
+      <a asp-page="/PlayGames" asp-route-id="@Model.FeaturedGame.GameId" class="btn btn-primary">Play Now</a>
+    </div>
+    <div class="card-footer text-muted">
+      Number of times played:
+    </div>
   </div>
 </div>
 
 <!-- Cards -->
-<div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+<div class="container">
+  <div class="row">
+    @foreach (var g in Model.GamesList)
+{
+  <div class="col">
+  <div class="card-column">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">@g.GameName</h5>
+        <p class="card-body">
+          <img class="game-img" src="@g.ThumbnailPath">
+        </p>
+        <p class="card-text">@g.GameType</p>
+        <p class="card-text">@g.Description</p>
+        <a asp-page="/PlayGames" asp-route-id="@Model.FeaturedGame.GameId" class="btn btn-primary">Play Now</a>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
     </div>
   </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
   </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
+  }
   </div>
 </div>
+
+<a asp-page="/Games" asp-route-id="" class="">See All Games</a>
+

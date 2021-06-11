@@ -22,7 +22,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">UserID</th>
                             <th scope="col">Email</th>
                         </tr>
                     </thead>
@@ -30,9 +29,8 @@
                         @foreach (var u in Model.UserList)
                         {
                             <tr>
-                                <td>@u.UserID</td>
                                 <td>@u.Email</td>
-                                <th scope="col"><a asp-page="/EditGame" asp-route-id="@u.UserID" >Edit</a></th>
+                                <th scope="col"><a asp-page="/EditUser" asp-route-id="@u.Id" >Edit</a></th>
                             </tr>
                         }
 
@@ -68,7 +66,7 @@
                                 <td>@g.GamePath</td>
                                 <td>@g.ThumbnailPath</td>
                                 <td>@g.Description</td>
-                                <th scope="col"><a asp-page="/EditGame" asp-route-id="@g.GameId" >Edit</a></th>
+                                <th scope="col"><a asp-page="/Admin/Games/EditGame" asp-route-id="@g.GameId" >Edit</a></th>
                             </tr>
                         }
                     </tbody>

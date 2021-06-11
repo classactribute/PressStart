@@ -16,7 +16,7 @@ namespace PressStart.Pages
     [Authorize(Roles = "Admin")]
     public class AdminIndexModel : PageModel
     {
-        public List<User> UserList { get; set; } = new List<User>();
+        public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>();
         public List<Game> GameList {get; set; } = new List<Game>();
 
         private readonly PressStartContext db;
