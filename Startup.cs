@@ -36,12 +36,7 @@ namespace PressStart
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
-            services.AddAuthentication().AddFacebook(options =>
-            {
-                options.AppId = Configuration["Authentication:Facebook:AppId"];
-                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-                options.AccessDeniedPath = "/AccessDeniedPathInfo";
-            });
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
