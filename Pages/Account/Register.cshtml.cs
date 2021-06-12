@@ -33,6 +33,10 @@ namespace PressStart.Pages
         public class InputModel
         {
             [Required]
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -48,20 +52,17 @@ namespace PressStart.Pages
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
-        public void OnGet()
-        {
-        }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email, EmailConfirmed = true };
+                var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email, EmailConfirmed = true };
                 var result = await userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded) {
                     var result2 = await userManager.AddToRoleAsync(user, "User");
                     if (result2.Succeeded) {
-                        logger.LogInformation($"User {Input.Email} create a new account with password");
+                        logger.LogInformation($"User {Input.UserName} create a new account with password");
                         return RedirectToPage("RegisterSuccess", new { email = Input.Email });
                     } else {
                         // FIXME: delete the user since role assignment failed, log the event, show error to the user

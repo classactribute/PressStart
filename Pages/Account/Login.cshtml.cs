@@ -30,9 +30,8 @@ namespace PressStart.Pages
         public class InputModel
         {
             [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
@@ -51,10 +50,10 @@ namespace PressStart.Pages
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, false);
+                var result = await signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    logger.LogInformation($"User {Input.Email} logged in successfully.");
+                    logger.LogInformation($"User {Input.UserName} logged in successfully.");
                     return RedirectToPage("/Index");
                 }
                 ModelState.AddModelError("", "Invalid Login Attempt");

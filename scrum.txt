@@ -157,6 +157,6 @@ Phil
 3.	Review docs/tutorial for Facebook authentication
 
 Tee
-1.	Index pages and view games page can be viewed. Games can be edited and deleted by admin. Admin is now able to access Admin index from main index page. 	   
+1.	Index pages and view games page can be viewed. Games can be edited and deleted by admin. Admin is now able to access Admin index from main index page. You are logged in as... on front page	   
 2.	Admin to be able to delete or block a user. Add username to identity user. Add comments section on PlayGames page. ?User to be able to edit their own information?
 3.	As needed
