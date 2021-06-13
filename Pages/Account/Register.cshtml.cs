@@ -59,12 +59,16 @@ namespace PressStart.Pages
             {
                 var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email, EmailConfirmed = true };
                 var result = await userManager.CreateAsync(user, Input.Password);
-                if (result.Succeeded) {
+                if (result.Succeeded)
+                {
                     var result2 = await userManager.AddToRoleAsync(user, "User");
-                    if (result2.Succeeded) {
+                    if (result2.Succeeded)
+                    {
                         logger.LogInformation($"User {Input.UserName} create a new account with password");
                         return RedirectToPage("RegisterSuccess", new { email = Input.Email });
-                    } else {
+                    }
+                    else
+                    {
                         // FIXME: delete the user since role assignment failed, log the event, show error to the user
                     }
                 }

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using PressStart.Data;
 
 using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace PressStart
 {
@@ -31,12 +32,19 @@ namespace PressStart
             services.AddDbContext<PressStartContext>();
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
             .AddEntityFrameworkStores<PressStartContext>();
-            // services.AddAuthentication().AddFacebook(facebookOptions =>
-            // {
-            //     facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-            //     facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            // });
-        
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
+                options.HttpsPort = 5001;
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
