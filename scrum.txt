@@ -142,3 +142,21 @@ Tee
 1.	Index; added a random featured game and got the games to be able to be played on PlayGame page. Started on Admin Index Users table.	   
 2.	Finish both Index pages and view games page
 3.	stuck on the Users table... why is nothing appearing.
+_____________________________________________________________________________________
+2021/06/12
+
+Nick
+1.	add game, thumbnail and s3 error handling implemeneted 
+2.	optimize gameplay, find hosting solution
+3.	As needed
+	
+Phil
+
+1.	Implementing the Facebook login feature
+2.	Hopefully succeed in the implementation
+3.	Review docs/tutorial for Facebook authentication
+
+Tee
+1.	Index pages and view games page can be viewed. Games can be edited and deleted by admin. Admin is now able to access Admin index from main index page. You are logged in as... on front page	   
+2.	Admin to be able to delete or block a user. Add username to identity user. Add comments section on PlayGames page. ?User to be able to edit their own information?
+3.	As needed
