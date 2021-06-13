@@ -104,3 +104,15 @@ body {
 .card {
     margin-top: 25px;
 }
+
+.unmute {
+    background-image: url(http://franriavilla.in/images/unmute.png);
+    background-size: cover;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.mute {
+    background-image: url(http://franriavilla.in/images/mute.png);
+}

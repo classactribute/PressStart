@@ -8,19 +8,19 @@
 <script type="text/javascript" src="~/js/nes-embed.js"></script>
 
 <div class="text-center">
-    <div style="margin: auto; width: 100%;">
-			<canvas id="nes-canvas" width="256" height="240" style="width: 100%"/>
-		</div>
-		<p><button class="btn btn-secondary" onclick="goFullScreen();">Go Fullscreen</button></p>
-		<p><button onclick="unMute();">Unmute</button></p>
-		<p>DPad: Arrow keys<br/>Start: Return, Select: Tab<br/>A Button: A, B Button: S</p>
+    <div id="box" style="margin: auto; width: 100%;">
+        <canvas id="nes-canvas" width="256" height="240" style="width: 100%" />
+    </div>
+    <p><button class="btn btn-secondary" onclick="goFullScreen();">Go Fullscreen</button></p>
+    <button id="mute_all">Mute</button> 
+    
+    <p>DPad: Arrow keys<br />Start: Return, Select: Tab<br />A Button: A, B Button: S</p>
 </div>
 
 <script>
-	function unMute(){
     
-}
 </script>
+
 
 <script>
 	function goFullScreen(){
