@@ -11,20 +11,20 @@ a.navbar-brand {
 /* Provide sufficient contrast against white background */
 
 a {
-    color: #0366d6;
+    color: #2A4BB7;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #2A4BB7;
+    border-color: #FFFF25;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #2A4BB7;
+    border-color: #2A4BB7;
 }
 
 
@@ -101,9 +101,12 @@ body {
     height: 275px;
 }
 
-.card {
+.card-solo {
     margin-top: 25px;
+    width: 300px;
 }
+
+/*PlayGames*/
 
 .unmute {
     background-image: url(http://franriavilla.in/images/unmute.png);
@@ -115,4 +118,104 @@ body {
 
 .mute {
     background-image: url(http://franriavilla.in/images/mute.png);
+}
+
+/* COMMENT BOX */
+
+.comment-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    width: 450px;
+    word-wrap: break-word;
+    background-color: black;
+    background-clip: border-box;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
+}
+
+.comment-box {
+    padding: 5px
+}
+
+.add-comment {
+    color: white;
+}
+
+.comment-area textarea {
+    resize: none;
+    border: 1px solid #ad9f9f
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+}
+
+.send {
+    color: #fff;
+    background-color: #2A4BB7;
+    border-color: black
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #355EE6;
+    border-color: black
+}
+
+.cancel {
+    color: #fff;
+    background-color: #D82B2C;
+    border-color: black;
+}
+
+.cancel:hover {
+    color: #fff;
+    background-color: #D84548;
+    border-color: black;
+}
+
+.rating {
+    display: flex;
+    margin-top: -10px;
+    flex-direction: row-reverse;
+    margin-left: -4px;
+    float: left
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 19px;
+    font-size: 25px;
+    color: #FFFF25;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
 }
