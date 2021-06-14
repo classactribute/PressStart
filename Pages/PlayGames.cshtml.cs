@@ -33,39 +33,40 @@ namespace PressStart.Pages
             UserList = await db.Users.ToListAsync();
         }     
 
+        [BindProperty]
         public Game Game {get;set;}
 
         [BindProperty]
         public Comment Comment {get;set;}
 
-        public Microsoft.AspNetCore.Identity.IdentityUser ThisUser {get; set; }
+        public IdentityUser ThisUser {get; set; }
 
         // [BindProperty]
         // public int Rating {get; set; }
-
+        [BindProperty]
         public string CommentText {get; set; }
 
         public List<Comment> CommentList {get;set;}= new List<Comment>();
         public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>(); 
 
-        public InputModel CommentInput { get; set; }
+        // public InputModel CommentInput { get; set; }
 
-        // public string ReturnUrl { get; set; }
+        // // public string ReturnUrl { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [Display(Name = "User")]
-            public string User { get; set; }
+        // public class InputModel
+        // {
+        //     [BindProperty]
+        //     [Display(Name = "User")]
+        //     public IdentityUser User { get; set; }
 
-            [Required]
-            [Display(Name = "CommentText")]
-            public string CommentText { get; set; }
+        //     [BindProperty]
+        //     [Display(Name = "CommentText")]
+        //     public string CommentText { get; set; }
 
-            [Required]
-            [Display(Name = "Game")]
-            public string Game { get; set; }
-        }    
+        //     [BindProperty]
+        //     [Display(Name = "Game")]
+        //     public Game Game { get; set; }
+        // }    
  
         // public async Task onGetAsync(int? id)
         // {
@@ -87,11 +88,13 @@ namespace PressStart.Pages
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var Comment = new PressStart.Models.Comment { CommentText = CommentInput.CommentText, User = ThisUser, Game = Game };
+            var userName = User.Identity.Name;
+            var user = db.Users.Where(u => u.UserName == userName).FirstOrDefault();
+            Comment = new PressStart.Models.Comment { CommentText = CommentText, User = user, Game = Game };
             db.Comments.Add(Comment);
             await db.SaveChangesAsync();
 
