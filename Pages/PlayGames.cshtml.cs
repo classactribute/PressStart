@@ -29,7 +29,7 @@ namespace PressStart.Pages
         public async Task OnGetAsync()
         {
             Game = await db.Games.FindAsync(Id);
-            CommentList = await db.Comments.ToListAsync();
+          
             UserList = await db.Users.ToListAsync();
         }     
 
@@ -38,41 +38,18 @@ namespace PressStart.Pages
 
         [BindProperty]
         public Comment Comment {get;set;}
+        
+        [BindProperty]
+        public IdentityUser User {get; set; }
 
-        public IdentityUser ThisUser {get; set; }
-
-        // [BindProperty]
-        // public int Rating {get; set; }
+        
         [BindProperty]
         public string CommentText {get; set; }
 
         public List<Comment> CommentList {get;set;}= new List<Comment>();
         public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>(); 
 
-        // public InputModel CommentInput { get; set; }
-
-        // // public string ReturnUrl { get; set; }
-
-        // public class InputModel
-        // {
-        //     [BindProperty]
-        //     [Display(Name = "User")]
-        //     public IdentityUser User { get; set; }
-
-        //     [BindProperty]
-        //     [Display(Name = "CommentText")]
-        //     public string CommentText { get; set; }
-
-        //     [BindProperty]
-        //     [Display(Name = "Game")]
-        //     public Game Game { get; set; }
-        // }    
- 
-        // public async Task onGetAsync(int? id)
-        // {
-        //     Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
-        //     NewComment = await db.Comments.Include(m => m.CommentText == CommentText).Include(m => m.Rating == Rating).FirstOrDefaultAsync(m => m.CommentId == id);
-        // }
+       
         public async Task<IActionResult> onGetAsync(int? id)
         {
             if (id == null)
@@ -86,15 +63,15 @@ namespace PressStart.Pages
             return Page();
         }
 
+
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var userName = User.Identity.Name;
-            var user = db.Users.Where(u => u.UserName == userName).FirstOrDefault();
-            Comment = new PressStart.Models.Comment { CommentText = CommentText, User = user, Game = Game };
+            
+            Comment = new PressStart.Models.Comment { CommentText = CommentText, User = User, Game = Game };
             db.Comments.Add(Comment);
             await db.SaveChangesAsync();
 
