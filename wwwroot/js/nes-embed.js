@@ -1,7 +1,7 @@
 var SCREEN_WIDTH = 256;
 var SCREEN_HEIGHT = 240;
 var FRAMEBUFFER_SIZE = SCREEN_WIDTH*SCREEN_HEIGHT;
-
+var audio_ctx;
 var canvas_ctx, image;
 var framebuffer_u8, framebuffer_u32;
 
@@ -92,7 +92,7 @@ function nes_init(canvas_id){
 	framebuffer_u32 = new Uint32Array(buffer);
 	
 	// Setup audio.
-	var audio_ctx = new window.AudioContext();
+	audio_ctx = new window.AudioContext();
 	var script_processor = audio_ctx.createScriptProcessor(AUDIO_BUFFERING, 0, 2);
 	script_processor.onaudioprocess = audio_callback;
 	script_processor.connect(audio_ctx.destination);
