@@ -16,7 +16,6 @@ namespace PressStart.Pages
     [Authorize]
     public class PlayGamesModel : PageModel
     {
-
         private readonly PressStartContext db;
         
         public PlayGamesModel(PressStartContext db)
@@ -25,43 +24,60 @@ namespace PressStart.Pages
         } 
 
         [BindProperty(SupportsGet = true)]
-        
-
         public int Id{get; set;}
-        public async Task OnGetAsync() => Game = await db.Games.FindAsync(Id);
+
+        public async Task OnGetAsync()
+        {
+            Game = await db.Games.FindAsync(Id);
+            CommentList = await db.Comments.ToListAsync();
+            UserList = await db.Users.ToListAsync();
+        }     
 
         public Game Game {get;set;}
 
-        public Comment newComment {get;set;}
+        public Comment NewComment {get;set;}
+
+        public Microsoft.AspNetCore.Identity.IdentityUser ThisUser {get; set; }
 
         [BindProperty]
         public int Rating {get; set; }
 
         [BindProperty, Required, MinLength(1), MaxLength(2000), Display(Name = "CommentText") ]
         public string CommentText {get; set; }
-        public Microsoft.AspNetCore.Identity.IdentityUser ThisUser {get; set; }
 
-        public async Task onGetAsync(int? id)
+        public List<Comment> CommentList {get;set;}= new List<Comment>();
+        public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>();     
+
+        // public async Task onGetAsync(int? id)
+        // {
+        //     Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
+        //     NewComment = await db.Comments.Include(m => m.CommentText == CommentText).Include(m => m.Rating == Rating).FirstOrDefaultAsync(m => m.CommentId == id);
+        // }
+        public async Task<IActionResult> onGetAsync(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
             Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
+            NewComment = await db.Comments.Include(m => m.CommentText == CommentText).Include(m => m.Rating == Rating).FirstOrDefaultAsync(m => m.CommentId == id);
+
+            return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (ModelState.IsValid)
             {
                 return Page();
             }
-            
-            db.Comments.Add(newComment);
+        
+
+            db.Comments.Add(NewComment);
             await db.SaveChangesAsync();
 
-            return RedirectToPage($"/PlayGames");
+            return RedirectToPage("/PlayGames");
         }
-
-        
-        public List<Comment> comments{get;set;}= new List<Comment>();
-
-        //public async Task onGetAsync() => comments = await db.Comments.FirstOrDefault(x => x.GameId == Id);
     }
 }

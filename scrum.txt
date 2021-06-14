@@ -160,3 +160,21 @@ Tee
 1.	Index pages and view games page can be viewed. Games can be edited and deleted by admin. Admin is now able to access Admin index from main index page. You are logged in as... on front page	   
 2.	Admin to be able to delete or block a user. Add username to identity user. Add comments section on PlayGames page. ?User to be able to edit their own information?
 3.	As needed
+_____________________________________________________________________________________
+2021/06/14
+
+Nick
+1.	small bug fixes, troubleshooting hosting  
+2.	fix scroll/mute/etc
+3.	stuck on canvas functions
+	
+Phil
+
+1.	Tried many variations of the Facebook login code
+2.	Figure out and complete the Facebook login
+3.	Stuck on using external authentication
+
+Tee
+1.	Added username to identity user in db. fixed play game to play the right game. Started (and stuck on) Comments page	   
+2.	Admin to be able to delete or block a user. Add comments section on PlayGames page. ?User to be able to edit their own information?
+3.	As needed
