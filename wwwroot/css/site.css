@@ -123,7 +123,7 @@ body {
 
 /* COMMENT BOX */
 
-.comment-card {
+/* .comment-card {
     position: relative;
     display: flex;
     margin-right: 75px;
@@ -217,4 +217,5 @@ body {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
-}
+} */
+

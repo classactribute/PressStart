@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace PressStart.Models
 {
@@ -12,9 +13,9 @@ namespace PressStart.Models
         public int Rating {get; set; }
 
         [Required]
-        public int UserId {get; set;}
+        public IdentityUser User {get; set;}
 
         [Required]
-        public int GameId {get; set;}
+        public Game Game {get; set;}
     }
 }

@@ -35,19 +35,38 @@ namespace PressStart.Pages
 
         public Game Game {get;set;}
 
-        public Comment NewComment {get;set;}
+        [BindProperty]
+        public Comment Comment {get;set;}
 
         public Microsoft.AspNetCore.Identity.IdentityUser ThisUser {get; set; }
 
-        [BindProperty]
-        public int Rating {get; set; }
+        // [BindProperty]
+        // public int Rating {get; set; }
 
-        [BindProperty, Required, MinLength(1), MaxLength(2000), Display(Name = "CommentText") ]
         public string CommentText {get; set; }
 
         public List<Comment> CommentList {get;set;}= new List<Comment>();
-        public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>();     
+        public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>(); 
 
+        public InputModel CommentInput { get; set; }
+
+        // public string ReturnUrl { get; set; }
+
+        public class InputModel
+        {
+            [Required]
+            [Display(Name = "User")]
+            public string User { get; set; }
+
+            [Required]
+            [Display(Name = "CommentText")]
+            public string CommentText { get; set; }
+
+            [Required]
+            [Display(Name = "Game")]
+            public string Game { get; set; }
+        }    
+ 
         // public async Task onGetAsync(int? id)
         // {
         //     Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
@@ -61,7 +80,7 @@ namespace PressStart.Pages
             }
             
             Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
-            NewComment = await db.Comments.Include(m => m.CommentText == CommentText).Include(m => m.Rating == Rating).FirstOrDefaultAsync(m => m.CommentId == id);
+            Comment = await db.Comments.FirstOrDefaultAsync(m => m.CommentId == id);
 
             return Page();
         }
@@ -72,12 +91,11 @@ namespace PressStart.Pages
             {
                 return Page();
             }
-        
-
-            db.Comments.Add(NewComment);
+            var Comment = new PressStart.Models.Comment { CommentText = CommentInput.CommentText, User = ThisUser, Game = Game };
+            db.Comments.Add(Comment);
             await db.SaveChangesAsync();
 
-            return RedirectToPage("/PlayGames");
+            return RedirectToPage("/Index");
         }
     }
 }
