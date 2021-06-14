@@ -1,7 +1,7 @@
 var SCREEN_WIDTH = 256;
 var SCREEN_HEIGHT = 240;
 var FRAMEBUFFER_SIZE = SCREEN_WIDTH*SCREEN_HEIGHT;
-
+var audio_ctx;
 var canvas_ctx, image;
 var audio_ctx;
 var framebuffer_u8, framebuffer_u32;
