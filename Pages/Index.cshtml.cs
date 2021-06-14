@@ -18,6 +18,7 @@ namespace PressStart.Pages
         public IndexModel(PressStartContext db) => this.db = db;
         public List<Game> GamesList { get; set; } = new List<Game>();
         public Game FeaturedGame { get; set; }  
+        public Game PlayGame {get; set; }
 
         public async Task OnGetAsync()
         {

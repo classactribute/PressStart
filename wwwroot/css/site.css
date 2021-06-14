@@ -125,12 +125,14 @@ body {
 .comment-card {
     position: relative;
     display: flex;
+    margin-right: 75px;
     flex-direction: column;
     min-width: 0;
+    height: 325px;
     padding: 20px;
     width: 450px;
     word-wrap: break-word;
-    background-color: black;
+    background-color: rgba(0, 0, 0, .5);
     background-clip: border-box;
     border-radius: 6px;
     box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
@@ -138,10 +140,6 @@ body {
 
 .comment-box {
     padding: 5px
-}
-
-.add-comment {
-    color: white;
 }
 
 .comment-area textarea {
