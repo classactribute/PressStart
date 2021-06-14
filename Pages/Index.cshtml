@@ -43,7 +43,7 @@
         </p>
         <p class="card-text">@g.GameType</p>
         <p class="card-text">@g.Description</p>
-        <a asp-page="/PlayGames" asp-route-id="@Model.FeaturedGame.GameId" class="btn btn-primary">Play Now</a>
+        <a asp-page="/PlayGames" asp-route-id="@g.GameId" class="btn btn-primary">Play Now</a>
       </div>
       <div class="card-footer">
         <small class="text-muted">Last updated 3 mins ago</small>
