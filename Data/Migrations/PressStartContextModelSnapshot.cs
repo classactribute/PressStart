@@ -214,7 +214,14 @@ namespace PressStart.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Rating")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")

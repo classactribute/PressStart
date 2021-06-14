@@ -9,7 +9,7 @@ using PressStart.Data;
 namespace PressStart.Data.Migrations
 {
     [DbContext(typeof(PressStartContext))]
-    [Migration("20210611141238_CreateDatabase")]
+    [Migration("20210614003833_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,7 +216,14 @@ namespace PressStart.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Rating")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")

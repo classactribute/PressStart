@@ -15,7 +15,7 @@
           @Model.FeaturedGame.GameName
       </h5>
       <p class="card-body">
-          <img src="@Url.Content(Model.FeaturedGame.ThumbnailPath)">
+          <img class="game-img" src="@Url.Content(Model.FeaturedGame.ThumbnailPath)">
       </p>
       <p class="card-text">
           @Model.FeaturedGame.Description
@@ -39,7 +39,7 @@
       <div class="card-body">
         <h5 class="card-title">@g.GameName</h5>
         <p class="card-body">
-          <img class="game-img" src="@g.ThumbnailPath">
+          <img class="game-img" src="@Url.Content(g.ThumbnailPath)">
         </p>
         <p class="card-text">@g.GameType</p>
         <p class="card-text">@g.Description</p>
