@@ -9,7 +9,7 @@ using PressStart.Data;
 namespace PressStart.Data.Migrations
 {
     [DbContext(typeof(PressStartContext))]
-    [Migration("20210614003833_CreateDatabase")]
+    [Migration("20210614153158_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,16 +220,20 @@ namespace PressStart.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("GameId")
+                    b.Property<int?>("GameId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Rating")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CommentId");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -317,6 +321,21 @@ namespace PressStart.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PressStart.Models.Comment", b =>
+                {
+                    b.HasOne("PressStart.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Game");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
