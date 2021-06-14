@@ -29,7 +29,7 @@ namespace PressStart.Pages
         public async Task OnGetAsync()
         {
             Game = await db.Games.FindAsync(Id);
-            CommentList = await db.Comments.ToListAsync();
+            
             UserList = await db.Users.ToListAsync();
         }     
 
@@ -46,6 +46,7 @@ namespace PressStart.Pages
         public string CommentText {get; set; }
 
         public List<Comment> CommentList {get;set;}= new List<Comment>();
+        
         public List<Microsoft.AspNetCore.Identity.IdentityUser> UserList { get; set; } = new List<Microsoft.AspNetCore.Identity.IdentityUser>(); 
 
         public InputModel CommentInput { get; set; }
@@ -72,6 +73,7 @@ namespace PressStart.Pages
         //     Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
         //     NewComment = await db.Comments.Include(m => m.CommentText == CommentText).Include(m => m.Rating == Rating).FirstOrDefaultAsync(m => m.CommentId == id);
         // }
+        
         public async Task<IActionResult> onGetAsync(int? id)
         {
             if (id == null)
@@ -85,17 +87,20 @@ namespace PressStart.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+      /*  public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (ModelState.IsValid)
             {
                 return Page();
             }
             var Comment = new PressStart.Models.Comment { CommentText = CommentInput.CommentText, User = ThisUser, Game = Game };
+            
             db.Comments.Add(Comment);
+            
             await db.SaveChangesAsync();
 
             return RedirectToPage("/Index");
         }
+      */
     }
 }
