@@ -9,7 +9,7 @@ using PressStart.Data;
 namespace PressStart.Data.Migrations
 {
     [DbContext(typeof(PressStartContext))]
-    [Migration("20210614153158_CreateDatabase")]
+    [Migration("20210615021337_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

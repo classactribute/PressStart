@@ -28,7 +28,7 @@
                 @foreach (var c in Model.CommentList)
                 {
                     <div class="comment mt-4 text-justify">
-                        <h4>@Html.DisplayNameFor(model => User.Identity.Name)</h4>
+                        <h4>@c.User.UserName</h4>
                         <!-- <span>- 20 October, 2018</span> -->
                         <br>
                         <p>@c.CommentText</p>

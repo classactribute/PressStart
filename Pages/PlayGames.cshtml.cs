@@ -59,7 +59,7 @@ namespace PressStart.Pages
 
             Game = await db.Games.FirstOrDefaultAsync(m => m.GameId == id);
             // Comment = await db.Comments.FirstOrDefaultAsync(m => m.CommentId == id);
-            CommentList = await db.Comments.Where(x => x.Game.GameId == Game.GameId).ToListAsync();
+            CommentList = await db.Comments.Include(x => x.User).Where(x => x.Game.GameId == Game.GameId).ToListAsync();
 
             return Page();
         }
@@ -72,7 +72,8 @@ namespace PressStart.Pages
             }
             
             var game = await db.Games.FirstOrDefaultAsync(x => x.GameId == id);
-            var Comment = new PressStart.Models.Comment { CommentText = CommentText, User = ThisUser, Game = game };
+            var currUser = await db.Users.FirstOrDefaultAsync(x => x.UserName == ThisUser.UserName);
+            var Comment = new PressStart.Models.Comment { CommentText = CommentText, User = currUser, Game = game };
             db.Comments.Add(Comment);
             await db.SaveChangesAsync();
 
